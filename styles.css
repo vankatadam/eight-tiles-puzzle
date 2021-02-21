@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 
+/* make the boxes pretty */
+
 .box1 {
   width: 322px;
   height: 322px;
