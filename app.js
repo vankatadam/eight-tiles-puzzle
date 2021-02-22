@@ -5,40 +5,50 @@ for (var i = 0; i < tileArr.length; i++) {
 }
 
 //To-Do: Shuffle the tiles in random
+const winCondition = [
+  ["tile1", "tile2", "tile3"],
+  ["tile4", "tile5", "tile6"],
+  ["tile7", "tile8", "empty"],
+];
 
 //fill the array with tile objects
 //put them on the right position
 //add event listeners
+var tileArrShuffled = [
+  "tile1",
+  "tile2",
+  "tile3",
+  "tile4",
+  "tile5",
+  "tile6",
+  "tile7",
+  "tile8",
+  "empty",
+];
+const tmp = [...tileArrShuffled];
+shuffle(tileArrShuffled);
+
 var tileNumber = 0;
 for (var i = 0; i < tileArr.length; i++) {
   for (var j = 0; j < tileArr.length; j++) {
     tileNumber++;
     const positionX = j * 100;
     const positionY = i * 100;
-    //for tiles
-    if (tileNumber != 9) {
-      const id = "tile" + tileNumber;
 
-      tileArr[i][j] = id;
+    // const id = tileArrShuffled[tileNumber - 1];
+    const id = tmp[tileNumber - 1];
 
-      const tileElement = document.getElementById(id);
+    tileArr[i][j] = id;
+    const tileElement = document.getElementById(id);
 
-      tileElement.style.transform =
-        "translate(" + positionX + "px," + positionY + "px)";
-
-      tileElement.addEventListener("click", select);
-
-      //   console.log(tileArr[i][j], i, j);
-      //for empty space
+    if (id === "empty") {
+      tileElement.addEventListener("click", selectEmpty);
     } else {
-      tileArr[i][j] = "empty";
-      const emptyTile = document.getElementById("empty");
-      emptyTile.style.transform =
-        "translate(" + positionX + "px," + positionY + "px)";
-      emptyTile.addEventListener("click", selectEmpty);
-
-      //   console.log(tileArr[i][j], i, j);
+      tileElement.addEventListener("click", select);
     }
+
+    tileElement.style.transform =
+      "translate(" + positionX + "px," + positionY + "px)";
   }
 }
 
@@ -67,7 +77,6 @@ function select() {
   ) {
     selectedTileIndex = getIndexOfId(tileArr, this.id);
     this.style.color = "red";
-    console.log(this.id);
     selectedTileId = this.id;
 
     //deselect old
@@ -87,7 +96,6 @@ function selectEmpty() {
   if (selectedTileId !== "") {
     //swap positions (transform props), change array positions, null selecting variables
     emptyTileIndex = getIndexOfId(tileArr, this.id);
-    console.log(this.id);
 
     const emptyTransform = document.getElementById(this.id).style.transform;
     const tileTransform = document.getElementById(selectedTileId).style
@@ -104,10 +112,12 @@ function selectEmpty() {
     selectedTileIndex = getIndexOfId(tileArr, selectedTileId);
 
     //To-Do: Check win Condition
+    if (JSON.stringify(tileArr) === JSON.stringify(winCondition)) {
+      document.getElementById("modal").style.display = "flex";
+      console.log("WOOON");
+    }
   }
 }
-
-console.log(tileArr);
 
 /**
  * Searches for an specific id in two dimenstional array
@@ -119,4 +129,16 @@ function getIndexOfId(arr, id) {
       return [y, x];
     }
   }
+}
+
+/**
+ * Shuffles array in place
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
