@@ -1,19 +1,16 @@
-//make an empty 3x3 array
+//using this array as reference to where the tiles are
 var tileArr = new Array(3);
 for (var i = 0; i < tileArr.length; i++) {
   tileArr[i] = new Array(3);
 }
 
-//To-Do: Shuffle the tiles in random
 const winCondition = [
   ["tile1", "tile2", "tile3"],
   ["tile4", "tile5", "tile6"],
   ["tile7", "tile8", "empty"],
 ];
 
-//fill the array with tile objects
-//put them on the right position
-//add event listeners
+//generate random pattern and add listeners
 var tileArrShuffled = [
   "tile1",
   "tile2",
@@ -25,7 +22,9 @@ var tileArrShuffled = [
   "tile8",
   "empty",
 ];
+//delet bevore final version
 const tmp = [...tileArrShuffled];
+
 shuffle(tileArrShuffled);
 
 var tileNumber = 0;
@@ -35,6 +34,7 @@ for (var i = 0; i < tileArr.length; i++) {
     const positionX = j * 100;
     const positionY = i * 100;
 
+    //change becore final version
     // const id = tileArrShuffled[tileNumber - 1];
     const id = tmp[tileNumber - 1];
 
@@ -111,9 +111,13 @@ function selectEmpty() {
     emptyTileIndex = getIndexOfId(tileArr, this.id);
     selectedTileIndex = getIndexOfId(tileArr, selectedTileId);
 
-    //To-Do: Check win Condition
     if (JSON.stringify(tileArr) === JSON.stringify(winCondition)) {
-      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modal").classList.add("won");
+      //   document.getElementById("modal").style.display = "flex";
+      //   document.getElementById("modal").style.color = "rgba(0,0,0,1)";
+      //   document.getElementById("modal").style.backgroundColor =
+      //     "rgba(255,255,255,1)";
+
       console.log("WOOON");
     }
   }

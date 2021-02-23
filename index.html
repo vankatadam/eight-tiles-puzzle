@@ -10,11 +10,16 @@
   </head>
   <body>
     <p>
-      How to play: Move tiles to go from 1 to 8 from top left corner to right
-      bottom corner to win
+      How to play: Tap the tile closest to the empty space to slide it into the
+      empty position. To win, you have to achieve pattern from 1 in the top left
+      corner to 8 in the bottom middle corner to win. Help:
+      <a href="https://en.wikipedia.org/wiki/Sliding_puzzle">?</a>
     </p>
     <div class="box1">
       <div class="box2">
+        <div class="circleContainer" id="empty">
+          <div class="emptyTile"></div>
+        </div>
         <div class="tileShape" id="tile1"><p>1</p></div>
         <div class="tileShape" id="tile2"><p>2</p></div>
         <div class="tileShape" id="tile3"><p>3</p></div>
@@ -23,7 +28,6 @@
         <div class="tileShape" id="tile6"><p>6</p></div>
         <div class="tileShape" id="tile7"><p>7</p></div>
         <div class="tileShape" id="tile8"><p>8</p></div>
-        <div class="emptyTile" id="empty"></div>
         <div class="modal" id="modal"><p>You Won!!!</p></div>
       </div>
     </div>
