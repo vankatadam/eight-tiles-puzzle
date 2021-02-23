@@ -22,8 +22,8 @@ var tileArrShuffled = [
   "tile8",
   "empty",
 ];
-//delet bevore final version
-const tmp = [...tileArrShuffled];
+//for fast checking win con
+//const tmp = [...tileArrShuffled];
 
 shuffle(tileArrShuffled);
 
@@ -34,9 +34,9 @@ for (var i = 0; i < tileArr.length; i++) {
     const positionX = j * 100;
     const positionY = i * 100;
 
-    //change becore final version
-    // const id = tileArrShuffled[tileNumber - 1];
-    const id = tmp[tileNumber - 1];
+    const id = tileArrShuffled[tileNumber - 1];
+    //for fast checking win con
+    //const id = tmp[tileNumber - 1];
 
     tileArr[i][j] = id;
     const tileElement = document.getElementById(id);
@@ -95,14 +95,12 @@ function select() {
  */
 function selectEmpty() {
   if (selectedTileId !== "") {
-    //swap positions (transform props), change array positions, null selecting variables
     emptyTileIndex = getIndexOfId(tileArr, this.id);
 
     const emptyTransform = document.getElementById(this.id).style.transform;
     const tileTransform = document.getElementById(selectedTileId).style
       .transform;
 
-    //To-Do: make the transform as an animation
     document.getElementById(this.id).style.transform = tileTransform;
     document.getElementById(selectedTileId).style.transform = emptyTransform;
 
@@ -114,12 +112,6 @@ function selectEmpty() {
 
     if (JSON.stringify(tileArr) === JSON.stringify(winCondition)) {
       document.getElementById("modal").classList.add("won");
-      //   document.getElementById("modal").style.display = "flex";
-      //   document.getElementById("modal").style.color = "rgba(0,0,0,1)";
-      //   document.getElementById("modal").style.backgroundColor =
-      //     "rgba(255,255,255,1)";
-
-      console.log("WOOON");
     }
   }
 }
