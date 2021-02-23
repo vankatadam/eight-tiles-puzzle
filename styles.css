@@ -2,9 +2,13 @@
   box-sizing: border-box;
 }
 
-/* make the boxes pretty */
+p {
+  margin-top: 38px;
+  text-align: center;
+}
 
 .box1 {
+  margin: auto;
   width: 322px;
   height: 322px;
   border: 2px solid black;
