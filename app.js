@@ -76,12 +76,13 @@ function select() {
       selectedTileIndexTmp[0] == emptyTileIndex[0])
   ) {
     selectedTileIndex = getIndexOfId(tileArr, this.id);
-    this.style.color = "red";
+    this.style.backgroundColor = "#F29261";
     selectedTileId = this.id;
 
     //deselect old
     if (selectedTileOldId != "") {
-      document.getElementById(selectedTileOldId).style.color = "black";
+      document.getElementById(selectedTileOldId).style.backgroundColor =
+        "white";
       selectedTileOldId = this.id;
     } else {
       selectedTileOldId = this.id;
